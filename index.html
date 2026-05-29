@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>tisuro · Passwort zurücksetzen</title>
+  <style>
+    :root {
+      --safe-top:    env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+      background:
+        radial-gradient(ellipse at top left, rgba(123, 97, 255, 0.18), transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(142, 246, 255, 0.14), transparent 50%),
+        #050505;
+      color: #F5F5F5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .card {
+      width: 100%;
+      max-width: 380px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
+      padding: 36px 26px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      text-align: center;
+    }
+    .emoji {
+      font-size: 64px;
+      line-height: 1;
+      margin-bottom: 18px;
+      filter: drop-shadow(0 8px 28px rgba(255,214,107,0.3));
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+      line-height: 1.25;
+    }
+    .brand {
+      background: linear-gradient(90deg, #C8FFB0, #8EF6FF, #7B61FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: rgba(245,245,245,0.7);
+      margin: 0 0 22px;
+    }
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 16px 22px;
+      border-radius: 100px;
+      background: linear-gradient(90deg, #C8FFB0, #8EF6FF);
+      color: #050505;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(142,246,255,0.25);
+      transition: transform 0.15s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .err {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #FF8E8E;
+      min-height: 20px;
+    }
+    .hint {
+      margin-top: 22px;
+      font-size: 11px;
+      color: rgba(245,245,245,0.45);
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="emoji">🔐</div>
+    <h1>Passwort zurücksetzen für <span class="brand">tisuro</span></h1>
+    <p id="msg">Klicke auf den Button um deine tisuro-App zu öffnen und dein neues Passwort zu setzen.</p>
+    <a href="#" class="btn" id="openBtn">tisuro öffnen</a>
+    <div class="err" id="err"></div>
+    <div class="hint">Wenn sich die App nicht automatisch öffnet, stelle sicher dass tisuro auf deinem iPhone installiert ist.</div>
+  </div>
+
+  <script>
+    (function () {
+      // Supabase liefert Access-Token + Refresh-Token im URL-Hash (nicht Query).
+      // Format: #access_token=…&refresh_token=…&expires_in=…&token_type=bearer&type=recovery
+      var hash = window.location.hash.replace(/^#/, '');
+      var params = new URLSearchParams(hash || window.location.search.replace(/^\?/, ''));
+
+      var access  = params.get('access_token');
+      var refresh = params.get('refresh_token');
+      var type    = params.get('type');
+      var errParam = params.get('error') || params.get('error_description');
+
+      var errEl = document.getElementById('err');
+      var btn   = document.getElementById('openBtn');
+      var msg   = document.getElementById('msg');
+
+      if (errParam) {
+        msg.textContent = 'Der Link ist abgelaufen oder ungültig.';
+        errEl.textContent = decodeURIComponent(errParam);
+        btn.style.display = 'none';
+        return;
+      }
+      if (!access || !refresh) {
+        msg.textContent = 'Kein Reset-Token gefunden. Fordere bitte einen neuen Link an.';
+        btn.style.display = 'none';
+        return;
+      }
+
+      // Custom-URL-Scheme: tisuro://reset?access_token=…&refresh_token=…
+      var deepLink = 'tisuro://reset?'
+        + 'access_token='   + encodeURIComponent(access)
+        + '&refresh_token=' + encodeURIComponent(refresh)
+        + '&type=' + encodeURIComponent(type || 'recovery');
+
+      btn.href = deepLink;
+
+      // Auto-Open auf iOS-Geräten — nach 600ms damit User die Seite kurz sieht
+      setTimeout(function () {
+        window.location.href = deepLink;
+      }, 600);
+    })();
+  </script>
+</body>
+</html>
