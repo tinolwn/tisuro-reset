@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>tisuro · Konto löschen</title>
+<style>
+  :root {
+    --bg: #0E1018; --fg: #F5F5F5; --muted: rgba(245,245,245,0.65);
+    --accent: #C8FFB0; --accent2: #8EF6FF; --border: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: radial-gradient(ellipse at top, #1A0B2E 0%, var(--bg) 50%, #050505 100%);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    padding: 24px 16px 60px;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 40px 32px;
+    backdrop-filter: blur(20px);
+  }
+  .logo {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .logo span {
+    font-size: 32px; font-weight: 800; letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  h1 {
+    font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 8px;
+  }
+  .sub {
+    color: var(--muted); font-size: 15px; line-height: 1.55; margin-bottom: 32px;
+  }
+  h2 {
+    font-size: 19px; font-weight: 700; margin: 32px 0 12px;
+    color: var(--accent);
+  }
+  p, li {
+    color: var(--muted); font-size: 14.5px; line-height: 1.6;
+  }
+  ol, ul { padding-left: 22px; margin-bottom: 16px; }
+  ol li, ul li { margin-bottom: 6px; }
+  .box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin: 12px 0;
+  }
+  .box h3 {
+    font-size: 14px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--fg); margin-bottom: 8px;
+  }
+  .box.delete h3 { color: #FF8EC7; }
+  .box.keep h3 { color: var(--accent2); }
+  code {
+    background: rgba(142,246,255,0.08);
+    color: var(--accent2);
+    padding: 2px 7px; border-radius: 6px;
+    font-family: 'SF Mono', Monaco, monospace; font-size: 13px;
+  }
+  a {
+    color: var(--accent2); text-decoration: none;
+  }
+  a:hover { text-decoration: underline; }
+  .footer {
+    margin-top: 40px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: rgba(245,245,245,0.4); font-size: 12px; text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo"><span>tisuro</span></div>
+  <h1>Konto und Daten löschen</h1>
+  <p class="sub">
+    Diese Seite erklärt, wie du dein tisuro-Konto löschst und welche Daten dabei entfernt
+    werden. tisuro respektiert dein Recht, deine Daten jederzeit zu kontrollieren.
+  </p>
+
+  <h2>1. Löschung direkt in der App</h2>
+  <p>Du kannst dein Konto selbst und sofort löschen — keine Mail nötig:</p>
+  <ol>
+    <li>Öffne die tisuro-App</li>
+    <li>Tippe unten rechts auf <strong>Profil</strong></li>
+    <li>Tippe oben rechts auf das <strong>Zahnrad ⚙</strong> (Einstellungen)</li>
+    <li>Scrolle ganz nach unten zum Punkt <strong>„Konto löschen"</strong></li>
+    <li>Bestätige die Sicherheitsabfrage</li>
+  </ol>
+  <p>Dein Konto wird unmittelbar gesperrt und deine Profildaten innerhalb weniger Sekunden gelöscht.</p>
+
+  <h2>2. Löschung per E-Mail</h2>
+  <p>
+    Falls du die App nicht (mehr) installiert hast oder Hilfe brauchst, schreib uns an
+    <a href="mailto:noreply@tisustudios.de?subject=Konto%20l%C3%B6schen">noreply@tisustudios.de</a>
+    mit der E-Mail-Adresse deines Kontos. Wir bestätigen die Löschung innerhalb von 7 Tagen.
+  </p>
+
+  <h2>3. Was wird gelöscht</h2>
+  <div class="box delete">
+    <h3>Unmittelbar entfernt</h3>
+    <ul>
+      <li>Dein Profil (Display-Name, Username, Avatar-Bild, Lieblingsteam)</li>
+      <li>Alle deine Tipps und Bonus-Vorhersagen</li>
+      <li>Inventar (Coins, Power-Ups, Truhen, Achievements)</li>
+      <li>Freundschaften und Gruppen-Mitgliedschaften</li>
+      <li>Empfehlungs-Verbindungen (Referrals)</li>
+      <li>Tasks- und Glücksrad-Verlauf</li>
+      <li>Block- und Report-Einträge die du angelegt hast</li>
+      <li>Dein E-Mail- und Authentifizierungsdatensatz wird anonymisiert oder gelöscht</li>
+    </ul>
+  </div>
+
+  <h2>4. Was aufbewahrt wird</h2>
+  <div class="box keep">
+    <h3>Anonymisierte Daten — keine Rückverfolgung möglich</h3>
+    <ul>
+      <li>Aggregierte Ranglistenstatistiken (z. B. „Spieler #42 hatte 12 Treffer") — ohne Klarnamen</li>
+      <li>Anonymisierte Server-Logs zur Missbrauchserkennung (max. 6 Monate)</li>
+      <li>Backup-Snapshots der Datenbank für max. 30 Tage aus technischen Gründen
+        (werden danach automatisch überschrieben)</li>
+    </ul>
+  </div>
+
+  <h2>5. Aufbewahrungsfristen</h2>
+  <p>
+    Standardmäßig sind <strong>30 Tage</strong> nach der Löschung alle Spuren in unseren
+    Live-Systemen entfernt. Reine Backups laufen innerhalb dieses Zeitraums aus.
+    Es gibt keine darüber hinausgehende kommerzielle oder rechtliche Aufbewahrungspflicht,
+    da tisuro keine Zahlungen oder steuerrelevanten Transaktionen verarbeitet.
+  </p>
+
+  <h2>6. Kontakt</h2>
+  <p>
+    Verantwortlicher Anbieter:<br>
+    tisustudios (Tino Lewandowski)<br>
+    E-Mail: <a href="mailto:noreply@tisustudios.de">noreply@tisustudios.de</a><br><br>
+    Datenschutzerklärung:
+    <a href="https://www.iubenda.com/privacy-policy/20803771/legal" target="_blank">
+      iubenda.com/privacy-policy/20803771/legal
+    </a>
+  </p>
+
+  <div class="footer">
+    © tisuro · Tippspiel für die WM 2026
+  </div>
+</div>
+</body>
+</html>
